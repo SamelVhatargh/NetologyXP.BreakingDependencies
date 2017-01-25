@@ -82,6 +82,20 @@ var states = {
             "PrescriptionDrug": "",
         },
     },
+    "Tennessee": {
+        "baseTax": 0.07,
+        "itemTypes": {
+            "Groceries": 0.05,
+            "PrescriptionDrug": 0,
+        },
+    },
+    "Texas": {
+        "baseTax": 0.0625,
+        "itemTypes": {
+            "Groceries": "",
+            "PrescriptionDrug": "",
+        },
+    },
 };
 
 class State {
@@ -190,6 +204,16 @@ var tests = [
     () => assertEquals(6.7 * (1 + 0.0), new State("Alaska").calculatePriceFor(new Item("amoxicillin"))),
     () => assertEquals(6.7 * (1 + 0.0), new State("California").calculatePriceFor(new Item("amoxicillin"))),
     () => assertEquals(2 * (1 + 0.0635), new State("Connecticut").calculatePriceFor(new Item("hamburger"))),
+
+    () => assertEquals(5.5 * (1 + 0.07 + 0.05), new State("Tennessee").calculatePriceFor(new Item("milk"))),
+    () => assertEquals(2 * (1 + 0.07), new State("Tennessee").calculatePriceFor(new Item("hamburger"))),
+    () => assertEquals(0.2 * (1 + 0.07), new State("Tennessee").calculatePriceFor(new Item("aspirin"))),
+
+    () => assertEquals(5.5 * (1 + 0.0), new State("Texas").calculatePriceFor(new Item("milk"))),
+    () => assertEquals(2 * (1 + 0.0625), new State("Texas").calculatePriceFor(new Item("hamburger"))),
+    () => assertEquals(0.2 * (1 + 0.0), new State("Texas").calculatePriceFor(new Item("aspirin"))),
+
+
     function () {
         let calculator = new TestableTaxCalculator("Colorado", ["milk", "hamburger"]);
         calculator.calculateTax();
