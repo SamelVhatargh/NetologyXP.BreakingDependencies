@@ -58,11 +58,12 @@ function calc(state, itemType) {
 
 function calculatePriceFor(state, itemName) {
     var result = null;
-    if (items[itemName].type === "PreparedFood") {
-        result = ( 1 + base(state) ) * items[itemName].price;
+    let item = items[itemName];
+    if (item.type === "PreparedFood") {
+        result = ( 1 + base(state) ) * item.price;
     }
     else {
-        result = calc(state, items[itemName].type) * items[itemName].price + items[itemName].price;
+        result = calc(state, item.type) * item.price + item.price;
     }
     return result;
 }
