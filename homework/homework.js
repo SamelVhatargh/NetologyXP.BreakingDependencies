@@ -95,14 +95,14 @@ class TaxCalculator {
         var state = this._getSelectedState();
         this._print(`----------${state}-----------`);
         for (var i = 0; i < ordersCount; i++) {
-            var item = this._getSelectedItem();
+            var item = this._getSelectedItem(i);
             var result = calculatePriceFor(state, new Item(item));
             this._print(`${item}: $${result.toFixed(2)}`);
         }
         this._print(`----Have a nice day!-----`);
     }
 
-    _getSelectedItem() {
+    _getSelectedItem(i) {
         return getSelectedItem();
     }
 
@@ -121,10 +121,10 @@ class TaxCalculator {
 
 class TestableTaxCalculator extends TaxCalculator
 {
-    constructor(state, item, ordersCount) {
+    constructor(state, items) {
         this._state = state;
-        this._item = item;
-        this._ordersCount = ordersCount;
+        this._items = items;
+        this._ordersCount = items.length;
         this._lines = '';
     }
 
@@ -132,8 +132,8 @@ class TestableTaxCalculator extends TaxCalculator
         return this._ordersCount;
     }
 
-    _getSelectedItem() {
-        return this._item;
+    _getSelectedItem(i) {
+        return this._items[i];
     }
 
     _getSelectedState() {
