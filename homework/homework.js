@@ -122,6 +122,7 @@ class TaxCalculator {
 class TestableTaxCalculator extends TaxCalculator
 {
     constructor(state, items) {
+        super();
         this._state = state;
         this._items = items;
         this._ordersCount = items.length;
@@ -141,7 +142,7 @@ class TestableTaxCalculator extends TaxCalculator
     }
 
     _print(text) {
-        this._lines = this.lines + text + '\n';
+        this._lines = this._lines + text + '\n';
     }
 
     getPrintedLines() {
