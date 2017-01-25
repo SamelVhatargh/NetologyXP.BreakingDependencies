@@ -119,6 +119,36 @@ class TaxCalculator {
     }
 }
 
+class TestableTaxCalculator extends TaxCalculator
+{
+    constructor(state, item, ordersCount) {
+        this._state = state;
+        this._item = item;
+        this._ordersCount = ordersCount;
+        this._lines = '';
+    }
+
+    _getOrdersCount() {
+        return this._ordersCount;
+    }
+
+    _getSelectedItem() {
+        return this._item;
+    }
+
+    _getSelectedState() {
+        return this._state;
+    }
+
+    _print(text) {
+        this._lines = this.lines + text + '\n';
+    }
+
+    getPrintedLines() {
+        return this._lines;
+    }
+}
+
 //############################
 //Production - код:
 calculateTaxes();
