@@ -106,10 +106,10 @@ class State {
     }
 
     calculatePriceFor(item) {
-        return (1 + this._calc(item.type)) * item.price;
+        return (1 + this._getTaxModifier(item.type)) * item.price;
     }
 
-    _calc(itemType) {
+    _getTaxModifier(itemType) {
         var itemTypeTaxModifier = itemType in this._itemTypeTaxes
             ? this._itemTypeTaxes[itemType] : 0;
         if (itemTypeTaxModifier === "no tax") {
