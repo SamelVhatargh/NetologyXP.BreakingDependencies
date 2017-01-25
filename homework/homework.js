@@ -171,11 +171,11 @@ calculateTaxes();
 //############################
 //Тесты:
 var tests = [
-    () => assertEquals(3.0 * (1 + 0.04), calculatePriceFor("Alabama", new Item("eggs"))),
-    () => assertEquals(0.4 * (1 + 0.015 + 0.065), calculatePriceFor("Arkansas", new Item("coca-cola"))),
-    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("Alaska", new Item("amoxicillin"))),
-    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("California", new Item("amoxicillin"))),
-    () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", new Item("hamburger"))),
+    () => assertEquals(3.0 * (1 + 0.04), new State("Alabama").calculatePriceFor(new Item("eggs"))),
+    () => assertEquals(0.4 * (1 + 0.015 + 0.065), new State("Arkansas").calculatePriceFor(new Item("coca-cola"))),
+    () => assertEquals(6.7 * (1 + 0.0), new State("Alaska").calculatePriceFor(new Item("amoxicillin"))),
+    () => assertEquals(6.7 * (1 + 0.0), new State("California").calculatePriceFor(new Item("amoxicillin"))),
+    () => assertEquals(2 * (1 + 0.0635), new State("Connecticut").calculatePriceFor(new Item("hamburger"))),
     function () {
         let calculator = new TestableTaxCalculator("Colorado", ["milk", "hamburger"]);
         calculator.calculateTax();
