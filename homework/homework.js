@@ -101,7 +101,7 @@ var states = {
 class State {
     constructor(name) {
         this._name = name;
-        this._base = states[this._name]['baseTax'];
+        this._baseTax = states[this._name]['baseTax'];
         this._itemTypeTaxes = states[this._name]['itemTypeTaxes'];
     }
 
@@ -112,7 +112,7 @@ class State {
     calculatePriceFor(item) {
         var result = null;
         if (item.type === "PreparedFood") {
-            result = ( 1 + this._base) * item.price;
+            result = ( 1 + this._baseTax) * item.price;
         }
         else {
             result = this._calc(item.type) * item.price + item.price;
@@ -125,7 +125,7 @@ class State {
         if (itemTypeTaxModifier === "no tax") {
             return 0;
         }
-        return this._base + itemTypeTaxModifier;
+        return this._baseTax + itemTypeTaxModifier;
     }
 }
 
