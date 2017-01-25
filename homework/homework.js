@@ -32,49 +32,55 @@ class Item {
     }
 }
 
-var itemTypes =
-    {
-        "Groceries": {
-            "Alabama": 0,
-            "Alaska": 0,
-            "Arizona": "",
-            "Arkansas": 0.015,
-            "California": "",
-            "Colorado": "",
-            "Connecticut": ""
-        },
-        "PrescriptionDrug": {
-            "Alabama": "",
-            "Alaska": 0,
-            "Arizona": "",
-            "Arkansas": "",
-            "California": "",
-            "Colorado": "",
-            "Connecticut": ""
-        }
-    };
-
 var states = {
     "Alabama": {
         "baseTax": 0.04,
+        "itemTypes": {
+            "Groceries": 0,
+            "PrescriptionDrug": "",
+        },
     },
     "Alaska": {
         "baseTax": 0,
+        "itemTypes": {
+            "Groceries": 0,
+            "PrescriptionDrug": 0,
+        },
     },
     "Arizona": {
         "baseTax": 0.056,
+        "itemTypes": {
+            "Groceries": "",
+            "PrescriptionDrug": "",
+        },
     },
     "Arkansas": {
         "baseTax": 0.065,
+        "itemTypes": {
+            "Groceries": 0.015,
+            "PrescriptionDrug": "",
+        },
     },
     "California": {
         "baseTax": 0.0075,
+        "itemTypes": {
+            "Groceries": "",
+            "PrescriptionDrug": "",
+        },
     },
     "Colorado": {
         "baseTax": 0.029,
+        "itemTypes": {
+            "Groceries": "",
+            "PrescriptionDrug": "",
+        },
     },
     "Connecticut": {
         "baseTax": 0.0635,
+        "itemTypes": {
+            "Groceries": "",
+            "PrescriptionDrug": "",
+        },
     },
 };
 
@@ -82,6 +88,7 @@ class State {
     constructor(name) {
         this._name = name;
         this._base = states[this._name]['baseTax'];
+        this._itemTypeTaxes = states[this._name]['itemTypes'];
     }
 
     get name() {
@@ -100,11 +107,11 @@ class State {
     }
 
     _calc(itemType) {
-        var itemTypeTaxModifier = itemTypes[itemType];
-        if (itemTypeTaxModifier[this._name] === "") {
+        var itemTypeTaxModifier = this._itemTypeTaxes[itemType];
+        if (itemTypeTaxModifier === "") {
             return 0;
         }
-        return this._base + itemTypeTaxModifier[this._name];
+        return this._base + itemTypeTaxModifier;
     }
 }
 
