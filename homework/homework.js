@@ -35,63 +35,63 @@ class Item {
 var states = {
     "Alabama": {
         "baseTax": 0.04,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": 0,
             "PrescriptionDrug": "no tax",
         },
     },
     "Alaska": {
         "baseTax": 0,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": 0,
             "PrescriptionDrug": 0,
         },
     },
     "Arizona": {
         "baseTax": 0.056,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": "no tax",
             "PrescriptionDrug": "no tax",
         },
     },
     "Arkansas": {
         "baseTax": 0.065,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": 0.015,
             "PrescriptionDrug": "no tax",
         },
     },
     "California": {
         "baseTax": 0.0075,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": "no tax",
             "PrescriptionDrug": "no tax",
         },
     },
     "Colorado": {
         "baseTax": 0.029,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": "no tax",
             "PrescriptionDrug": "no tax",
         },
     },
     "Connecticut": {
         "baseTax": 0.0635,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": "no tax",
             "PrescriptionDrug": "no tax",
         },
     },
     "Tennessee": {
         "baseTax": 0.07,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": 0.05,
             "PrescriptionDrug": 0,
         },
     },
     "Texas": {
         "baseTax": 0.0625,
-        "itemTypes": {
+        "itemTypeTaxes": {
             "Groceries": "no tax",
             "PrescriptionDrug": "no tax",
         },
@@ -102,7 +102,7 @@ class State {
     constructor(name) {
         this._name = name;
         this._base = states[this._name]['baseTax'];
-        this._itemTypeTaxes = states[this._name]['itemTypes'];
+        this._itemTypeTaxes = states[this._name]['itemTypeTaxes'];
     }
 
     get name() {
