@@ -82,19 +82,18 @@ class State {
             result = ( 1 + base(this._name) ) * item.price;
         }
         else {
-            result = calc(this._name, item.type) * item.price + item.price;
+            result = this._calc(item.type) * item.price + item.price;
         }
         return result;
     }
-}
 
-function calc(state, itemType) {
-
-    var itemTypeTaxModifier = itemTypes[itemType];
-    if (itemTypeTaxModifier[state] === "") {
-        return 0;
+    _calc(itemType) {
+        var itemTypeTaxModifier = itemTypes[itemType];
+        if (itemTypeTaxModifier[this._name] === "") {
+            return 0;
+        }
+        return base(this._name) + itemTypeTaxModifier[this._name];
     }
-    return base(state) + itemTypeTaxModifier[state];
 }
 
 class TaxCalculator {
