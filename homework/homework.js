@@ -37,7 +37,7 @@ var states = {
         "baseTax": 0.04,
         "itemTypes": {
             "Groceries": 0,
-            "PrescriptionDrug": "",
+            "PrescriptionDrug": "no tax",
         },
     },
     "Alaska": {
@@ -50,36 +50,36 @@ var states = {
     "Arizona": {
         "baseTax": 0.056,
         "itemTypes": {
-            "Groceries": "",
-            "PrescriptionDrug": "",
+            "Groceries": "no tax",
+            "PrescriptionDrug": "no tax",
         },
     },
     "Arkansas": {
         "baseTax": 0.065,
         "itemTypes": {
             "Groceries": 0.015,
-            "PrescriptionDrug": "",
+            "PrescriptionDrug": "no tax",
         },
     },
     "California": {
         "baseTax": 0.0075,
         "itemTypes": {
-            "Groceries": "",
-            "PrescriptionDrug": "",
+            "Groceries": "no tax",
+            "PrescriptionDrug": "no tax",
         },
     },
     "Colorado": {
         "baseTax": 0.029,
         "itemTypes": {
-            "Groceries": "",
-            "PrescriptionDrug": "",
+            "Groceries": "no tax",
+            "PrescriptionDrug": "no tax",
         },
     },
     "Connecticut": {
         "baseTax": 0.0635,
         "itemTypes": {
-            "Groceries": "",
-            "PrescriptionDrug": "",
+            "Groceries": "no tax",
+            "PrescriptionDrug": "no tax",
         },
     },
     "Tennessee": {
@@ -92,8 +92,8 @@ var states = {
     "Texas": {
         "baseTax": 0.0625,
         "itemTypes": {
-            "Groceries": "",
-            "PrescriptionDrug": "",
+            "Groceries": "no tax",
+            "PrescriptionDrug": "no tax",
         },
     },
 };
@@ -122,7 +122,7 @@ class State {
 
     _calc(itemType) {
         var itemTypeTaxModifier = this._itemTypeTaxes[itemType];
-        if (itemTypeTaxModifier === "") {
+        if (itemTypeTaxModifier === "no tax") {
             return 0;
         }
         return this._base + itemTypeTaxModifier;
