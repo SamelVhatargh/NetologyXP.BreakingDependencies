@@ -64,13 +64,10 @@ var taxes = {
     "Connecticut": 0.0635
 };
 
-function base(state) {
-    return taxes[state];
-}
-
 class State {
     constructor(name) {
         this._name = name;
+        this._base = taxes[this._name];
     }
 
     get name() {
@@ -80,7 +77,7 @@ class State {
     calculatePriceFor(item) {
         var result = null;
         if (item.type === "PreparedFood") {
-            result = ( 1 + base(this._name) ) * item.price;
+            result = ( 1 + this._base) * item.price;
         }
         else {
             result = this._calc(item.type) * item.price + item.price;
@@ -93,7 +90,7 @@ class State {
         if (itemTypeTaxModifier[this._name] === "") {
             return 0;
         }
-        return base(this._name) + itemTypeTaxModifier[this._name];
+        return this._base + itemTypeTaxModifier[this._name];
     }
 }
 
