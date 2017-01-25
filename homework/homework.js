@@ -54,16 +54,17 @@ var itemTypes =
         }
     };
 
+var taxes = {
+    "Alabama": 0.04,
+    "Alaska": 0,
+    "Arizona": 0.056,
+    "Arkansas": 0.065,
+    "California": 0.075,
+    "Colorado": 0.029,
+    "Connecticut": 0.0635
+};
+
 function base(state) {
-    var taxes = {
-        "Alabama": 0.04,
-        "Alaska": 0,
-        "Arizona": 0.056,
-        "Arkansas": 0.065,
-        "California": 0.075,
-        "Colorado": 0.029,
-        "Connecticut": 0.0635
-    };
     return taxes[state];
 }
 
