@@ -106,14 +106,7 @@ class State {
     }
 
     calculatePriceFor(item) {
-        var result = null;
-        if (item.type === "PreparedFood") {
-            result = ( 1 + this._baseTax) * item.price;
-        }
-        else {
-            result = this._calc(item.type) * item.price + item.price;
-        }
-        return result;
+        return (1 + this._calc(item.type)) * item.price;
     }
 
     _calc(itemType) {
