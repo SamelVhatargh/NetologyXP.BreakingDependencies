@@ -12,6 +12,26 @@ var items = {
     "ceasar salad": {price: 4.2, type: "PreparedFood"},
 };
 
+class Item {
+    constructor(name){
+        this._price = items[name].price;
+        this._type = items[name].type;
+        this._name = name;
+    }
+
+    get price() {
+        return this._price;
+    }
+
+    get type() {
+        return this._type;
+    }
+
+    get name() {
+        return this._name;
+    }
+}
+
 var itemTypes =
     {
         "Groceries": {
@@ -58,7 +78,7 @@ function calc(state, itemType) {
 
 function calculatePriceFor(state, itemName) {
     var result = null;
-    let item = items[itemName];
+    let item = new Item(itemName);
     if (item.type === "PreparedFood") {
         result = ( 1 + base(state) ) * item.price;
     }
