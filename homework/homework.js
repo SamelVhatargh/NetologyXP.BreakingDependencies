@@ -71,8 +71,13 @@ class State {
     constructor(name) {
         this._name = name;
     }
+
     get name() {
         return this._name;
+    }
+
+    calculatePriceFor(item) {
+        return calculatePriceFor(this.name, item);
     }
 }
 
@@ -105,7 +110,7 @@ class TaxCalculator {
         this._print(`----------${state.name}-----------`);
         for (var i = 0; i < ordersCount; i++) {
             var item = this._getSelectedItem(i);
-            var result = calculatePriceFor(state.name, item);
+            var result = state.calculatePriceFor(item);
             this._print(`${item.name}: $${result.toFixed(2)}`);
         }
         this._print(`----Have a nice day!-----`);
