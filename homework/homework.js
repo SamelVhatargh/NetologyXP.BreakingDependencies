@@ -93,13 +93,17 @@ class TaxCalculator {
     calculateTax() {
         var ordersCount = getOrdersCount();
         var state = getSelectedState();
-        console.log(`----------${state}-----------`);
+        this._print(`----------${state}-----------`);
         for (var i = 0; i < ordersCount; i++) {
             var item = getSelectedItem();
             var result = calculatePriceFor(state, new Item(item));
-            console.log(`${item}: $${result.toFixed(2)}`);
+            this._print(`${item}: $${result.toFixed(2)}`);
         }
-        console.log(`----Have a nice day!-----`);
+        this._print(`----Have a nice day!-----`);
+    }
+
+    _print(text) {
+        console.log(text);
     }
 }
 
