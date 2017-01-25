@@ -77,7 +77,14 @@ class State {
     }
 
     calculatePriceFor(item) {
-        return calculatePriceFor(this.name, item);
+        var result = null;
+        if (item.type === "PreparedFood") {
+            result = ( 1 + base(this._name) ) * item.price;
+        }
+        else {
+            result = calc(this._name, item.type) * item.price + item.price;
+        }
+        return result;
     }
 }
 
@@ -88,17 +95,6 @@ function calc(state, itemType) {
         return 0;
     }
     return base(state) + itemTypeTaxModifier[state];
-}
-
-function calculatePriceFor(state, item) {
-    var result = null;
-    if (item.type === "PreparedFood") {
-        result = ( 1 + base(state) ) * item.price;
-    }
-    else {
-        result = calc(state, item.type) * item.price + item.price;
-    }
-    return result;
 }
 
 class TaxCalculator {
