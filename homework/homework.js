@@ -54,20 +54,34 @@ var itemTypes =
         }
     };
 
-var taxes = {
-    "Alabama": 0.04,
-    "Alaska": 0,
-    "Arizona": 0.056,
-    "Arkansas": 0.065,
-    "California": 0.075,
-    "Colorado": 0.029,
-    "Connecticut": 0.0635
+var states = {
+    "Alabama": {
+        "baseTax": 0.04,
+    },
+    "Alaska": {
+        "baseTax": 0,
+    },
+    "Arizona": {
+        "baseTax": 0.056,
+    },
+    "Arkansas": {
+        "baseTax": 0.065,
+    },
+    "California": {
+        "baseTax": 0.0075,
+    },
+    "Colorado": {
+        "baseTax": 0.029,
+    },
+    "Connecticut": {
+        "baseTax": 0.0635,
+    },
 };
 
 class State {
     constructor(name) {
         this._name = name;
-        this._base = taxes[this._name];
+        this._base = states[this._name]['baseTax'];
     }
 
     get name() {
