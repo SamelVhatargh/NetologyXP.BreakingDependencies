@@ -36,15 +36,12 @@ var states = {
     "Alabama": {
         "baseTax": 0.04,
         "itemTypeTaxes": {
-            "Groceries": 0,
             "PrescriptionDrug": "no tax",
         },
     },
     "Alaska": {
         "baseTax": 0,
         "itemTypeTaxes": {
-            "Groceries": 0,
-            "PrescriptionDrug": 0,
         },
     },
     "Arizona": {
@@ -86,7 +83,6 @@ var states = {
         "baseTax": 0.07,
         "itemTypeTaxes": {
             "Groceries": 0.05,
-            "PrescriptionDrug": 0,
         },
     },
     "Texas": {
@@ -121,7 +117,8 @@ class State {
     }
 
     _calc(itemType) {
-        var itemTypeTaxModifier = this._itemTypeTaxes[itemType];
+        var itemTypeTaxModifier = itemType in this._itemTypeTaxes
+            ? this._itemTypeTaxes[itemType] : 0;
         if (itemTypeTaxModifier === "no tax") {
             return 0;
         }
