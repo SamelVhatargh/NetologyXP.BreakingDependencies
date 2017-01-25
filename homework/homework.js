@@ -56,13 +56,13 @@ function calc(state, itemType) {
     return base(state) + itemTypeTaxModifier[state];
 }
 
-function calculatePriceFor(state, item) {
+function calculatePriceFor(state, itemName) {
     var result = null;
-    if (items[item].type === "PreparedFood") {
-        result = ( 1 + base(state) ) * items[item].price;
+    if (items[itemName].type === "PreparedFood") {
+        result = ( 1 + base(state) ) * items[itemName].price;
     }
     else {
-        result = calc(state, items[item].type) * items[item].price + items[item].price;
+        result = calc(state, items[itemName].type) * items[itemName].price + items[itemName].price;
     }
     return result;
 }
