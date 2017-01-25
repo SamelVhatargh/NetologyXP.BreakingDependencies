@@ -76,9 +76,8 @@ function calc(state, itemType) {
     return base(state) + itemTypeTaxModifier[state];
 }
 
-function calculatePriceFor(state, itemName) {
+function calculatePriceFor(state, item) {
     var result = null;
-    let item = new Item(itemName);
     if (item.type === "PreparedFood") {
         result = ( 1 + base(state) ) * item.price;
     }
@@ -97,7 +96,7 @@ class TaxCalculator {
         console.log(`----------${state}-----------`);
         for (var i = 0; i < ordersCount; i++) {
             var item = getSelectedItem();
-            var result = calculatePriceFor(state, item);
+            var result = calculatePriceFor(state, new Item(item));
             console.log(`${item}: $${result.toFixed(2)}`);
         }
         console.log(`----Have a nice day!-----`);
@@ -111,11 +110,11 @@ calculateTaxes();
 //############################
 //Тесты:
 var tests = [
-    () => assertEquals(3.0 * (1 + 0.04), calculatePriceFor("Alabama", "eggs")),
-    () => assertEquals(0.4 * (1 + 0.015 + 0.065), calculatePriceFor("Arkansas", "coca-cola")),
-    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("Alaska", "amoxicillin")),
-    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("California", "amoxicillin")),
-    () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", "hamburger")),
+    () => assertEquals(3.0 * (1 + 0.04), calculatePriceFor("Alabama", new Item("eggs"))),
+    () => assertEquals(0.4 * (1 + 0.015 + 0.065), calculatePriceFor("Arkansas", new Item("coca-cola"))),
+    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("Alaska", new Item("amoxicillin"))),
+    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("California", new Item("amoxicillin"))),
+    () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", new Item("hamburger"))),
 ];
 
 //Раскомментируйте следующую строчку для запуска тестов:
