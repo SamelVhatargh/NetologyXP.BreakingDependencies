@@ -161,6 +161,20 @@ var tests = [
     () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("Alaska", new Item("amoxicillin"))),
     () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("California", new Item("amoxicillin"))),
     () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", new Item("hamburger"))),
+    function () {
+        let calculator = new TestableTaxCalculator("Colorado", ["milk", "hamburger"]);
+        calculator.calculateTax();
+        let expected = '----------Colorado-----------\n'
+            + 'milk: $5.50\n'
+            + 'hamburger: $2.06\n'
+            + '----Have a nice day!-----\n';
+        var actual = calculator.getPrintedLines();
+        if (expected === actual) {
+            return 0;
+        }
+        console.error(`Fail! Expected:\n\n ${expected}, Actual:\n\n ${actual}`);
+        return -1;
+    }
 ];
 
 //Раскомментируйте следующую строчку для запуска тестов:
