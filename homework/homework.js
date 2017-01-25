@@ -67,6 +67,15 @@ function base(state) {
     return taxes[state];
 }
 
+class State {
+    constructor(name) {
+        this._name = name;
+    }
+    get name() {
+        return this._name;
+    }
+}
+
 function calc(state, itemType) {
 
     var itemTypeTaxModifier = itemTypes[itemType];
